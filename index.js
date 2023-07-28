@@ -1,26 +1,6 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 
-const index = `
-# ${response.title}  
-
-# Description
-${response.description}
-# Installation
-${response.instructions}
-# Usage
-${response.usage}
-# License
-${response.license}
-# Contributing
-${response.contribution}
-# Tests
-${response.test}
-# Questions
-Github: www.github.com/${response.username}
-Email: ${response.email}
-`;
-
 inquirer.prompt([
   {
     type: "text",
@@ -69,8 +49,29 @@ inquirer.prompt([
     name: "email",
   }
 ]) .then (response => {
+
+    const index = `
+  # ${response.title}  
+
+  # Description
+  ${response.description}
+  # Installation
+  ${response.instructions}
+  # Usage
+  ${response.usage}
+  # License
+  ${response.license}
+  # Contributing
+  ${response.contribution}
+  # Tests
+  ${response.test}
+  # Questions
+  Github: www.github.com/${response.username}
+  Email: ${response.email}
+  `;
  
   fs.writeFile("README.md", index, error => 
   error ? console.log("error") : console.log("success")
   )
+  
 })
